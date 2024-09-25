@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-wind-icon',
@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './wind.component.html',
   styleUrl: './wind.component.scss',
 })
-export class WindComponent {}
+export class WindComponent {
+  @Input() customClass: string = 'w-[24px] h-[24px]';
+}

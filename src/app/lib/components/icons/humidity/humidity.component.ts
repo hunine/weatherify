@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-humidity-icon',
@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './humidity.component.html',
   styleUrl: './humidity.component.scss',
 })
-export class HumidityComponent {}
+export class HumidityComponent {
+  @Input() customClass: string = 'w-[24px] h-[24px]';
+}
