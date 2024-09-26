@@ -1,19 +1,29 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { WindComponent } from '@lib/components/icons/wind/wind.component';
 import { HumidityComponent } from '../../../lib/components/icons/humidity/humidity.component';
 import { TemperatureCardComponent } from '@lib/components/temperature-card/temperature-card.component';
+import { ApiService } from '@lib/services/api.service';
 
 const components = [WindComponent, HumidityComponent, TemperatureCardComponent];
+const services = [ApiService];
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [...components],
+  providers: [...services],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  private apiService = inject(ApiService);
+
   greeting: string = 'Good Morning';
   clock = '12:27 PM';
   date: string = '21.04.2021';
@@ -128,5 +138,9 @@ export class HomeComponent {
 
   get detailMainWeather(): string {
     return this.detail.mainWeather;
+  }
+
+  ngOnInit(): void {
+    this.apiService.getHourlyForecast(44.34, 10.34);
   }
 }
