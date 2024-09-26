@@ -23,6 +23,16 @@
         </div>
       </div>
     </div>
+    <div class="flex justify-between mt-10 mx-auto max-w-2xl">
+      @for (forecast of weeklyForecasts; track $index) {
+      <app-temperature-card
+        [header]="forecast.header"
+        [temperature]="forecast.temperature"
+        [description]="forecast.description"
+        [isActive]="forecast.isActive"
+      />
+      }
+    </div>
   </div>
   <div class="col-span-2 p-6 bg-neutral-100 flex flex-col items-center">
     <span class="text-3xl">{{ greeting }}</span>
@@ -49,5 +59,15 @@
     >
     <span class="text-base text-neutral-500 mt-3">{{ detailMainWeather }}</span>
     <span class="text-base mt-6">Hourly Forecast</span>
+    <div class="grid grid-cols-3 gap-4 mt-5">
+      @for (forecast of hourlyForecasts; track $index) {
+      <app-temperature-card
+        [header]="forecast.header"
+        [temperature]="forecast.temperature"
+        [description]="forecast.description"
+        [isActive]="forecast.isActive"
+      />
+      }
+    </div>
   </div>
 </div>
